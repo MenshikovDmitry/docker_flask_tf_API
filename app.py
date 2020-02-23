@@ -23,7 +23,8 @@ print('Running............')
 
 def process_files(request):
     '''
-    extracts files from the request. returns a dictionary
+    extracts files from the request. saving files to ../uploads.
+    returns a dictionary
     '''
     filenames={}
     basepath = os.path.dirname(__file__)

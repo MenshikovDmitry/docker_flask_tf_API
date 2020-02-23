@@ -1,4 +1,5 @@
-FROM python:3.7
+#FROM python:3.7
+FROM tensorflow/tensorflow:latest-devel-gpu-py3
 
 WORKDIR /usr/src/app
 
@@ -12,4 +13,4 @@ ADD templates ./templates
 
 EXPOSE 5000
 
-CMD [ "python", "app.py" ]
+#CMD [ "python", "app.py" ]

@@ -1,6 +1,6 @@
 numpy
 keras
-tensorflow
+#tensorflow-gpu
 flask
 gevent
 werkzeug
