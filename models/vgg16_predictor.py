@@ -15,7 +15,9 @@ class VGG16_predictor:
     def __init__(self):
         print ("Tensorflow version:",tf.__version__)
         from tensorflow.python.client import device_lib
-        print(device_lib.list_local_devices())
+        for device in device_lib.list_local_devices():
+            print(device.physical_device_desc)
+
         self.model_file=os.path.join(os.path.dirname(__file__),'VGG16.h5')
         
         if os.path.exists(self.model_file):
@@ -41,7 +43,7 @@ class VGG16_predictor:
         prediction=self.model.predict(img_data)
         
         pred_class = decode_predictions(prediction)
-        result = (pred_class[0][:5]) # top 5 results
-        result_print={r[1]:str(round(r[2],3)) for r in result if r[2]>0.01}
-        
-        return result_print
+        result = pred_class[0]
+        output=[(v[1],str(round(v[2],3))) for v in result]
+
+        return output
