@@ -1,4 +1,4 @@
-import os
+import os,datetime
 #import numpy as np
 
 # Keras
@@ -30,9 +30,11 @@ def process_files(request):
     returns a dictionary
     '''
     filenames={}
-    basepath = os.path.dirname(__file__)
+    #basepath = os.path.dirname(__file__)
+    basepath = "/home"
+    now = datetime.datetime.now()
     for filename, file in request.files.items():
-        file_path = os.path.join(basepath, 'uploads', secure_filename(filename))
+        file_path = os.path.join(basepath, 'uploads', secure_filename(filename+str(now)[:19]+".jpg"))
         file.save(file_path)
         filenames[filename]=file_path
     return filenames

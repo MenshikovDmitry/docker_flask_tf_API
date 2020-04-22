@@ -10,7 +10,7 @@ ADD models ./models
 COPY app.py .
 #ADD uploads ./uploads
 ADD templates ./templates
-RUN mkdir 'uploads'
+RUN mkdir '/home/uploads'
 EXPOSE 5000
 
 CMD [ "python", "app.py" ]
