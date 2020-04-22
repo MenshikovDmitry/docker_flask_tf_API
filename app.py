@@ -1,5 +1,5 @@
 import os
-import numpy as np
+#import numpy as np
 
 # Keras
 from keras.preprocessing import image
@@ -10,13 +10,16 @@ from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
 # VGG16
-from models.vgg16_predictor import VGG16_predictor
+#from models.vgg16_predictor import VGG16_predictor as Predictor
+
+#ResNet
+from models.resnet50_predictor import ResNet50_predictor as Predictor
 
 # Define a flask app
 app = Flask(__name__)
 
 #loading predictor
-predictor=VGG16_predictor()
+predictor=Predictor()
 
 print('Running............')
 
