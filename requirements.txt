@@ -1,6 +1,6 @@
 numpy
 keras
-tensorflow-gpu==1.15.*
+tensorflow
 flask
 gevent
 werkzeug

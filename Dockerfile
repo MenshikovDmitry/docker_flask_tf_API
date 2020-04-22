@@ -1,5 +1,5 @@
-#FROM python:3.7
-FROM tensorflow/tensorflow:latest-devel-gpu-py3
+FROM python:3.6
+#FROM tensorflow/tensorflow
 
 WORKDIR /usr/src/app
 
