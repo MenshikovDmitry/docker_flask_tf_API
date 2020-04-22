@@ -1,17 +1,8 @@
 <!doctype html>
 <title>Image recogniton/title></title>
 <h2>Select a file to upload</h2>
-<p>
-	{% with messages = get_flashed_messages() %}
-	  {% if messages %}
-		<ul class=flashes>
-		{% for message in messages %}
-		  <li>{{ message }}</li>
-		{% endfor %}
-		</ul>
-	  {% endif %}
-	{% endwith %}
-</p>
+
+
 <form method="post" action="/predict" enctype="multipart/form-data">
     <dl>
 		<p>
@@ -22,3 +13,24 @@
 		<input type="submit" value="Submit">
 	</p>
 </form>
+
+
+<br><br><br>
+
+<h2> Python API</h2>
+
+url='http://ec2-52-47-204-0.eu-west-3.compute.amazonaws.com/predict'<br>
+<br>
+headers = {<br>
+<p style="margin-left: 50px;">   'cache-control': "no-cache",<br></p>
+}<br>
+<br>
+files = {<br>
+	<p style="margin-left: 50px;">    'file2': open('images/4wd.jpeg', 'rb'),<br></p>
+	<p style="margin-left: 50px;">   # 'file': open('images/gs.jpg', 'rb'),<br></p>
+	<p style="margin-left: 50px;">'file1:': open('images/gs_mini.png','rb')<br></p>
+}<br>
+<br>
+r = requests.post(url, headers=headers, files=files)<br>
+<br>
+print(json.loads(r.text))<br>
