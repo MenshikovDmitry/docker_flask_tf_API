@@ -1,7 +1,7 @@
 .env/
 .denv/
 .vscode/
-/models/VGG16.h5
+/models/*.h5
 /uploads/*
 __pycache__
 .ipynb*
