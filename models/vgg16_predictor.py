@@ -44,6 +44,6 @@ class VGG16_predictor:
         
         pred_class = decode_predictions(prediction)
         result = pred_class[0]
-        output=[(v[1],str(round(v[2],3))) for v in result]
+        output={"prediction":[(v[1],str(round(v[2],3))) for v in result]}
 
         return output
