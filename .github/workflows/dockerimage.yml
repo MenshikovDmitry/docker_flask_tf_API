@@ -16,6 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag truck_detector
+    - name: tag the image
       run: docker tag truck_detector dmitrymenshikov/truck_detector:v1
     - name: Push the tagged Docker image
       run: docker push dmitrymenshikov/truck_detector:v1
