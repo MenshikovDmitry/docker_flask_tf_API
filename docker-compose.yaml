@@ -9,3 +9,4 @@ services:
         - ./:/home
         environment:
         - HOME=/home
+        - TZ=Russia/Moscow

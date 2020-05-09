@@ -48,6 +48,11 @@ def index():
     # Main page
     return render_template('upload.html')
 
+@app.route('/test', methods=['GET'])
+def index():
+    # test page
+    return 'HAHAHAHAHA '
+
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
