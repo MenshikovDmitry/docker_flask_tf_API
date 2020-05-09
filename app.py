@@ -49,7 +49,7 @@ def index():
     return render_template('upload.html')
 
 @app.route('/test', methods=['GET'])
-def index():
+def test():
     # test page
     return 'HAHAHAHAHA '
 
