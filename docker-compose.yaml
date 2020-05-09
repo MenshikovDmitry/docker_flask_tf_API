@@ -9,5 +9,6 @@ services:
         - ./:/home
         environment:
         - HOME=/home
-        container_name: truck_detector
         - TZ=Russia/Moscow
+        container_name: truck_detector
+        
