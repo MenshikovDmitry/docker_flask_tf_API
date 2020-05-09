@@ -1,7 +1,9 @@
 .env/
 .denv/
 .vscode/
-/models/*.h5
-/uploads/*
-__pycache__
+*.h5
+*.pyc
+*.ipynb
+uploads/*
 .ipynb*
+images/
