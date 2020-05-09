@@ -31,10 +31,13 @@ def process_files(request):
     '''
     filenames={}
     #basepath = os.path.dirname(__file__)
-    basepath = "/home"
+    basepath = os.environ.get("HOME")
+    uploads_dir=os.path.join(basepath,"uploads")
+    if not os.path.exists(uploads_dir):os.mkdir(uploads_dir)
+
     now = datetime.datetime.now()
     for filename, file in request.files.items():
-        file_path = os.path.join(basepath, 'uploads', secure_filename(filename+str(now)[:19]+".jpg"))
+        file_path = os.path.join(uploads_dir, secure_filename(filename+str(now)[:19]+".jpg"))
         file.save(file_path)
         filenames[filename]=file_path
     return filenames
