@@ -9,3 +9,4 @@ services:
         - ./:/home
         environment:
         - HOME=/home
+        container_name: truck_detector
