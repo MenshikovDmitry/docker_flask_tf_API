@@ -1,0 +1,11 @@
+version: "2"
+
+services: 
+    model_api:
+        image: dmitrymenshikov/truck_detector:v1
+        ports:
+        - "5000:5000"
+        volumes:
+        - ./:/home
+        environment:
+        - HOME=/home

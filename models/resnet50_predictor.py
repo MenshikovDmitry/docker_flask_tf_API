@@ -16,8 +16,11 @@ class ResNet50_predictor:
         from tensorflow.python.client import device_lib
         for device in device_lib.list_local_devices():
             print(device.physical_device_desc)
+        home_dir=os.environ.get("HOME")
+        model_dir=od.path.join(home_dir,'models_cache')
+        if not os.path.exists(model_dir):os.mkdir(model_dir)
 
-        self.model_file=os.path.join(os.path.dirname(__file__),'resnet50.h5')
+        self.model_file=os.path.join(model_dir,'resnet50.h5')
         #self.model_file='resnet50.h5'
 
         if os.path.exists(self.model_file):
