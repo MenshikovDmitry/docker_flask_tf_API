@@ -13,7 +13,7 @@ from gevent.pywsgi import WSGIServer
 #from models.vgg16_predictor import VGG16_predictor as Predictor
 
 #ResNet
-from models.resnet50_predictor import ResNet50_predictor as Predictor
+from models.resnet50_predictor import Predictor
 
 # Define a flask app
 app = Flask(__name__)

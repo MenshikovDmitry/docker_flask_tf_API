@@ -11,7 +11,7 @@ from keras.preprocessing import image
 from tensorflow.keras.models import load_model
 
 
-class VGG16_predictor:
+class Predictor:
     def __init__(self):
         print ("Tensorflow version:",tf.__version__)
         from tensorflow.python.client import device_lib
