@@ -9,11 +9,13 @@ from flask import Flask, redirect, url_for, request, render_template,flash,jsoni
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
-# VGG16
-#from models.vgg16_predictor import VGG16_predictor as Predictor
 
-#ResNet
-from models.resnet50_predictor import Predictor
+#ReNet
+#from models.resnet50_predictor import Predictor
+
+#Truck detector
+from models.truck_detector import Predictor
+
 
 # Define a flask app
 app = Flask(__name__)
@@ -62,7 +64,7 @@ def predict():
         results={}
         for fname,file_path in filenames.items():
             #loading each file from the request and predict labels
-            img = image.load_img(file_path, target_size=(224, 224))
+            img = image.load_img(file_path, target_size=predictor.input_size)
             results[fname]=predictor.predict(img)
             #print(result_print)
         return jsonify(results)
