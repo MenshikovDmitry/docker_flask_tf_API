@@ -4,10 +4,11 @@ services:
     model_api:
         image: dmitrymenshikov/truck_detector:v1
         ports:
-        - "5000:5000"
+        - "80:5000"
         volumes:
         - ./:/home
         environment:
         - HOME=/home
-        container_name: truck_detector
         - TZ=Russia/Moscow
+        container_name: truck_detector
+        
