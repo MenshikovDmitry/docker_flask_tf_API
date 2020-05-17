@@ -82,8 +82,10 @@ def predict():
         results={}
         for fname,file_path in filenames.items():
             #loading each file from the request and predict labels
+            
             img = image.load_img(file_path, target_size=predictor.input_size)
             results[fname]=predictor.predict(img)
+            logger.info("{}: {}".format(fname,results[fname]))
             #print(result_print)
         return jsonify(results)
     return None
