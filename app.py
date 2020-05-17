@@ -1,5 +1,10 @@
 import os,datetime
-#import numpy as np
+import logging
+
+logging.basicConfig(level = logging.DEBUG,filename='log.txt',
+                    format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s')
+logger=logging.getLogger()
+
 
 # Keras
 from keras.preprocessing import image
@@ -23,7 +28,7 @@ app = Flask(__name__)
 #loading predictor
 predictor=Predictor()
 
-print('Running............')
+logger.info('Running............')
 
 
 def process_files(request):

@@ -1,12 +1,14 @@
 import numpy as np
 import os
 import urllib.request
+import logging
 
 #from matplotlib import pyplot as plt
 import tensorflow as tf 
 from tensorflow.keras.applications.resnet50 import preprocess_input
 from keras.preprocessing import image
 from tensorflow.keras.models import load_model
+
 
 class Predictor:
     def __init__(self):
@@ -15,7 +17,7 @@ class Predictor:
         self.threshold=0.6
         self.input_size=(128,128)
 
-        print ("Tensorflow version:",tf.__version__)
+        logging.info ("Tensorflow version:",tf.__version__)
         from tensorflow.python.client import device_lib
         for device in device_lib.list_local_devices():
             print(device.physical_device_desc)
@@ -26,14 +28,14 @@ class Predictor:
         self.model_file=os.path.join(model_dir,self.model_name+'.h5')
 
         if os.path.exists(self.model_file):
-            print('loading model from file')
+            logging.info('loading model from file')
             self.model = load_model(self.model_file)
         else:
-            print("No model file. Downloading..")
+            logging.info("No model file. Downloading..")
             urllib.request.urlretrieve(self.model_url, self.model_file)
             self.model=self.model = load_model(self.model_file)
-            print('model has been successfully downloaded')
-            print('model saved to',self.model_file)
+            logging.info('model has been successfully downloaded')
+            logging.info('model saved to',self.model_file)
 
     
     def predict(self,input_image):
