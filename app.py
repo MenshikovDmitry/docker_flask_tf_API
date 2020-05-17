@@ -1,9 +1,13 @@
 import os,datetime
 import logging
 
-logging.basicConfig(level = logging.DEBUG,filename='log.txt',
+home_dir = os.environ.get("HOME")
+logfile=os.path.join(home_dir,'log.txt')
+
+logging.basicConfig(level = logging.DEBUG,filename=logfile,
                     format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s')
 logger=logging.getLogger()
+logger.info("=========================================================")
 
 
 # Keras
@@ -37,9 +41,7 @@ def process_files(request):
     returns a dictionary
     '''
     filenames={}
-    #basepath = os.path.dirname(__file__)
-    basepath = os.environ.get("HOME")
-    uploads_dir=os.path.join(basepath,"uploads")
+    uploads_dir=os.path.join(home_dir,"uploads")
     if not os.path.exists(uploads_dir):os.mkdir(uploads_dir)
 
     now = datetime.datetime.now()
@@ -59,6 +61,17 @@ def index():
 def test():
     # test page
     return 'HAHAHAHAHA '
+
+@app.route('/log', methods=['GET'])
+def log():
+    # return log file
+    with open(logfile,'r') as f:
+        s=f.readlines()
+    #last 100 lines of log file in. last events - on top
+    s=s[-100:]
+    s=s[::-1]
+    s='<br>'.join(s)
+    return s
 
 
 @app.route('/predict', methods=['GET', 'POST'])

@@ -17,10 +17,10 @@ class Predictor:
         self.threshold=0.6
         self.input_size=(128,128)
 
-        logging.info ("Tensorflow version:",tf.__version__)
+        logging.info ("Tensorflow version: "+str(tf.__version__))
         from tensorflow.python.client import device_lib
         for device in device_lib.list_local_devices():
-            print(device.physical_device_desc)
+            logging.info(device.physical_device_desc)
         home_dir=os.environ.get("HOME")
         model_dir=os.path.join(home_dir,'models_cache')
         if not os.path.exists(model_dir):os.mkdir(model_dir)
