@@ -15,7 +15,7 @@ class Predictor:
         self.model_name="truck_detector"
         self.model_url="https://dimafrankfurtbucket.s3.eu-central-1.amazonaws.com/public/truck_model.h5"
         self.threshold=0.6
-        self.input_size=(128,128)
+        self.input_size=(244,244)
 
         logging.info ("Tensorflow version: "+str(tf.__version__))
         from tensorflow.python.client import device_lib
