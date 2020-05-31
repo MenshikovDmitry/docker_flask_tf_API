@@ -79,16 +79,24 @@ def predict():
     if request.method == 'POST':
 
         filenames=process_files(request)
+        if len(filenames)==0:
+            logger.warning("No files attached")
+            return jsonify({'error':"No files attached"})
         results={}
         for fname,file_path in filenames.items():
             #loading each file from the request and predict labels
-            
-            img = image.load_img(file_path, target_size=predictor.input_size)
+            try:
+                img = image.load_img(file_path, target_size=predictor.input_size)
+            except Exception as e:
+                logger.error("Error loading file "+ file_path)
+                return jsonify({'error':"error loading file. is it a picture???"})
             results[fname]=predictor.predict(img)
             logger.info("{}: {}".format(fname,results[fname]))
             #print(result_print)
         return jsonify(results)
-    return None
+    logger.info("GET request")
+    return jsonify({'error':"GET request is not supported"})
+
 @app.route('/update',methods=['GET'])
 def update():
     result=predictor.update_model()
