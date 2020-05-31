@@ -32,7 +32,11 @@ class Predictor:
             self.model = load_model(self.model_file)
         else:
             logging.info("No model file. Downloading..")
-            urllib.request.urlretrieve(self.model_url, self.model_file)
+            try:
+                urllib.request.urlretrieve(self.model_url, self.model_file)
+            except Exception as e:
+                logging.critical('Unable to download the model from URL:'+str(e))
+                
             self.model=self.model = load_model(self.model_file)
             logging.info('model has been successfully downloaded')
             logging.info('model saved to',self.model_file)
