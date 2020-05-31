@@ -26,6 +26,10 @@ class Predictor:
         if not os.path.exists(model_dir):os.mkdir(model_dir)
 
         self.model_file=os.path.join(model_dir,self.model_name+'.h5')
+        self.load_model()
+        
+
+    def load_model(self):
 
         if os.path.exists(self.model_file):
             logging.info('loading model from file')
@@ -36,13 +40,19 @@ class Predictor:
                 urllib.request.urlretrieve(self.model_url, self.model_file)
             except Exception as e:
                 logging.critical('Unable to download the model from URL:'+str(e))
-                
+            logging.info('model has been successfully downloaded. saved to '+self.model_file)
             self.model=self.model = load_model(self.model_file)
-            logging.info('model has been successfully downloaded')
-            logging.info('model saved to',self.model_file)
+            logging.info("loaded from file")
 
-    
+    def update_model(self):
+        logging.info("removing model file")
+        os.remove(self.model_file)
+        logging.info("reloading the model")
+        self.load_model()
+        return 0
+
     def predict(self,input_image):
+
         img_data = image.img_to_array(input_image)
         img_data = np.expand_dims(img_data, axis=0)        
         img_data = preprocess_input(img_data.astype('float32'))

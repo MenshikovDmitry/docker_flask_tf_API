@@ -89,6 +89,11 @@ def predict():
             #print(result_print)
         return jsonify(results)
     return None
+@app.route('/update',methods=['GET'])
+def update():
+    result=predictor.update_model()
+    if result==0:
+        return 'success'
 
 
 if __name__ == '__main__':
