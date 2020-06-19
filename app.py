@@ -74,7 +74,7 @@ def log():
     return s
 
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/predict/istruck', methods=['GET', 'POST'])
 def predict():
     if request.method == 'POST':
 
