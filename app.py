@@ -102,6 +102,8 @@ def update():
     result=predictor.update_model()
     if result==0:
         return 'success'
+    if result ==1:
+        return 'Unable to upload'
 
 
 if __name__ == '__main__':

@@ -40,15 +40,25 @@ class Predictor:
                 urllib.request.urlretrieve(self.model_url, self.model_file)
             except Exception as e:
                 logging.critical('Unable to download the model from URL:'+str(e))
+                raise Exception('model URL is not reachable!')
             logging.info('model has been successfully downloaded. saved to '+self.model_file)
             self.model=self.model = load_model(self.model_file)
             logging.info("loaded from file")
 
     def update_model(self):
-        logging.info("removing model file")
-        os.remove(self.model_file)
-        logging.info("reloading the model")
-        self.load_model()
+        tmp_name=self.model_file+".backup"
+        os.rename(self.model_file,tmp_name)
+        try:
+            logging.info("reloading the model")
+            self.load_model()
+        except Exception as e:
+            logging.critical("Unable to update the model: "+ str(e)) 
+            os.rename(tmp_name,self.model_file)
+            logging.info("original model has been restored")
+            return 1
+
+        logging.info("Successfull Update. Removing temp model file")
+        os.remove(tmp_name)
         return 0
 
     def predict(self,input_image):
