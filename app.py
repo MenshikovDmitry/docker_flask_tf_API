@@ -103,7 +103,7 @@ def update():
     if result==0:
         return 'success'
     if result ==1:
-        return 'Unable to upload'
+        return 'Unable to update'
 
 
 if __name__ == '__main__':
