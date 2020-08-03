@@ -60,7 +60,7 @@ def index():
 @app.route('/test', methods=['GET'])
 def test():
     # test page
-    return 'HAHAHAHAHA '
+    return 'I am alive'
 
 @app.route('/log', methods=['GET'])
 def log():
