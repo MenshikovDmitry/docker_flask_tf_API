@@ -3,9 +3,12 @@
 .vscode/
 *.h5
 *.pyc
-*.ipynb
+helper.ipynb
 uploads/*
 .ipynb*
 images/
+.ipython/
+.keras/
+.python_history
 
 log.txt
