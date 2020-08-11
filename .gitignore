@@ -3,7 +3,7 @@
 .vscode/
 *.h5
 *.pyc
-helper.ipynb
+*.ipynb
 uploads/*
 .ipynb*
 images/
