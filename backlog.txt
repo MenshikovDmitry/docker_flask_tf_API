@@ -3,6 +3,7 @@ version: 1.0
 Todo:
     -removing old pictures
     -no "face" for prod environment
+    -BytesIO instead of saving and loading to HDD
 
 Done:
     14.08.20

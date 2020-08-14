@@ -105,6 +105,8 @@ def predict():
                 return jsonify({'error':"error loading file. is it a picture???"})
             results[fname]=predictor.predict(img)
             logger.info("{}: {}".format(fname,results[fname]))
+            #remove the file from the disk
+            os.remove(file_path)
             #print(result_print)
         return jsonify(results)
     logger.info("GET request")
