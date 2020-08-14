@@ -3,6 +3,7 @@ import logging
 
 home_dir = os.environ.get("HOME")
 logfile=os.path.join(home_dir,'log.txt')
+backlog_file=os.path.join(home_dir,'backlog.txt')
 
 logging.basicConfig(level = logging.DEBUG,filename=logfile,
                     format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s')
@@ -72,6 +73,16 @@ def log():
     #last 100 lines of log file in. last events - on top
     s=s[-100:]
     s=s[::-1]
+    s='<br>'.join(s)
+    return s
+
+@app.route('/v', methods=['GET'])
+def version():
+    # return backlog file
+    with open(backlog_file,'r') as f:
+        s=f.readlines()
+    #first 100 lines of log file in. last events - on top
+    s=s[:100]
     s='<br>'.join(s)
     return s
 

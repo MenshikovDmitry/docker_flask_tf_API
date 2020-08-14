@@ -12,3 +12,5 @@ images/
 .python_history
 
 log.txt
+
+.cache/

@@ -1,12 +1,16 @@
+version: 1.0
+
 Todo:
-    -versioning, api report
     -removing old pictures
     -no "face" for prod environment
 
 Done:
+    14.08.20
+        -versioning, api report
     13.08.20
         -VGG16 feature extractor
         -new model trained 97% acccuracy
+	-basic auto test before build
         
 
 
