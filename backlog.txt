@@ -1,0 +1,14 @@
+Todo:
+    -versioning, api report
+    -removing old pictures
+    -no "face" for prod environment
+
+Done:
+    13.08.20
+        -VGG16 feature extractor
+        -new model trained 97% acccuracy
+        
+
+
+
+
