@@ -7,5 +7,8 @@
 uploads/*
 .ipynb*
 images/
+.ipython/
+.keras/
+.python_history
 
 log.txt

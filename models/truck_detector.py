@@ -10,12 +10,12 @@ from keras.preprocessing import image
 from tensorflow.keras.models import load_model
 
 
-class Predictor:
+class API_Model():
+    """
+    parent class for all models
+    """
+
     def __init__(self):
-        self.model_name="truck_detector"
-        self.model_url="https://dimafrankfurtbucket.s3.eu-central-1.amazonaws.com/public/truck_model.h5"
-        self.threshold=0.6
-        self.input_size=(244,244)
 
         logging.info ("Tensorflow version: "+str(tf.__version__))
         from tensorflow.python.client import device_lib
@@ -27,10 +27,12 @@ class Predictor:
 
         self.model_file=os.path.join(model_dir,self.model_name+'.h5')
         self.load_model()
-        
+        self.input_size=self.model.layers[0].input_shape[1:-1]
 
     def load_model(self):
-
+        """
+        loads TF model from the file. If file doesnot exist, loads model from URL
+        """
         if os.path.exists(self.model_file):
             logging.info('loading model from file')
             self.model = load_model(self.model_file)
@@ -43,9 +45,14 @@ class Predictor:
                 raise Exception('model URL is not reachable!')
             logging.info('model has been successfully downloaded. saved to '+self.model_file)
             self.model=self.model = load_model(self.model_file)
+            
             logging.info("loaded from file")
 
     def update_model(self):
+        """
+        model Updater. Downloads the model from url. If successful,
+        updates the worker model 
+        """
         tmp_name=self.model_file+".backup"
         os.rename(self.model_file,tmp_name)
         try:
@@ -59,7 +66,25 @@ class Predictor:
 
         logging.info("Successfull Update. Removing temp model file")
         os.remove(tmp_name)
+        if self.input_size !=self.model.layers[0].input_shape[1:-1]:
+            logging.info("Input size updated {} -> {}".format(self.input_size,self.model.layers[0].input_shape[1:-1]))
+            self.input_size=self.model.layers[0].input_shape[1:-1]
         return 0
+    
+    def predict(self,input_image):
+        #code me. should be done in follower class
+        pass
+
+
+
+
+class Predictor(API_Model):
+    def __init__(self):
+        self.model_name="truck_detector"
+        self.model_url="https://dimafrankfurtbucket.s3.eu-central-1.amazonaws.com/public/truck_model.h5"
+        self.threshold=0.6
+
+        super().__init__()
 
     def predict(self,input_image):
 

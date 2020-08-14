@@ -57,10 +57,12 @@ def index():
     # Main page
     return render_template('upload.html')
 
+
+
 @app.route('/test', methods=['GET'])
 def test():
     # test page
-    return 'HAHAHAHAHA '
+    return 'I am alive'
 
 @app.route('/log', methods=['GET'])
 def log():
@@ -103,7 +105,7 @@ def update():
     if result==0:
         return 'success'
     if result ==1:
-        return 'Unable to upload'
+        return 'Unable to update'
 
 
 if __name__ == '__main__':
