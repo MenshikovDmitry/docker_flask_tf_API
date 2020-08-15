@@ -53,7 +53,7 @@ def process_files(request):
     return filenames
 
 
-@app.route('/', methods=['GET'])
+#@app.route('/', methods=['GET'])
 def index():
     # Main page
     return render_template('upload.html')
