@@ -9,7 +9,7 @@ RUN pip install -r requirements.txt
 
 ADD models ./models
 COPY app.py .
-COPY backlog.txt .
+COPY backlog.txt /home
 #ADD uploads ./uploads
 ADD templates ./templates
 RUN mkdir '/home/uploads'
