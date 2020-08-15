@@ -9,7 +9,7 @@ on:
 jobs:
 
 
-  test + build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -28,11 +28,11 @@ jobs:
       run: |
         python test.py
 
-#  build:
+  build:
 
-#    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-#    steps:
+    steps:
     - uses: actions/checkout@v2
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
