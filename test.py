@@ -7,7 +7,7 @@ except Exception as e:
     print("Import Error",e)
 
 PAGES=[
-        "/",
+#        "/",
         "/test",
         "/log",
         "/predict/istruck",
