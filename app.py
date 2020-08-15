@@ -76,7 +76,7 @@ def log():
     s='<br>'.join(s)
     return s
 
-@app.route('/v', methods=['GET'])
+#@app.route('/v', methods=['GET'])
 def version():
     # return backlog file
     with open(backlog_file,'r') as f:

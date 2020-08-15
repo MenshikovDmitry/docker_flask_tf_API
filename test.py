@@ -11,7 +11,7 @@ PAGES=[
         "/test",
         "/log",
         "/predict/istruck",
-        "/v",
+#        "/v",
 
 
     ]
